@@ -1,0 +1,125 @@
+{%load static%}
+{% load crispy_forms_tags %} 
+{% load hitcount_tags %}
+{% load notifications_tags %}
+
+<html>
+
+<head>
+    <title>
+        Curious.com
+    </title>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <meta name='theme-color' content='#2B65EC'>
+    {% if user.ProfUser.mode == 'Dark' %}
+    <link rel='stylesheet' href='{%static 'css/bootstrap/bootstrap.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/acss/acss.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/dark.css'%}' >
+    
+    {%else%}
+    <link rel='stylesheet' href='{%static 'css/bootstrap/bootstrap.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/acss/acss.css'%}' >
+    
+    {%endif%}   
+    <link rel='stylesheet' href='{%static 'css/fontawesome_5/css/all.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/acss/animate.min.css'%}' >
+    <script src='{%static 'js/htmx.min.js'%}'></script>
+    <script src='{%static 'js/jquery.min.js'%}'></script>
+    <script src='{%static 'js/file.js'%}'>
+    </script>
+    <script src="{% static 'fontawesome_5/js/all.min.js' %}">
+    </script>
+    
+</head>
+
+<style>
+:root{
+ --primary-color:#2B65EC;
+ --secondary-color:black;
+ --tertiary-color:77777;
+}
+
+.border{
+    border-color:var(--primary-color)
+}
+</style>
+
+<body class='font-lato'>
+    <div class='container' style=''>
+        <div class='row color-bg-p color-white p-2' id='icon' onclick="show()" style='text-align:center' >
+           
+            <div class='col-4' style='text-align:left'>
+                &#9776</div>
+                <div class='col-4' style='text-align:center'>
+                Curious.com
+                </div>
+                <div class='col-4'>
+                
+                </div>
+           
+    </div>
+    </div>
+    
+    <div id='loginpop' class='container hide pop-center position-fixed' style='z-index:100'>
+<p class='color-bg-s center color-white p-2 rounded sz-16'>
+Click here to login <br /> <a class='color-p w-100' href="{%url 'account_login' %}">Login </a>
+</p>
+</div>
+    
+    
+    <div id="dropdown" class="container-fluid position-fixed hide border-rght shadow animate__animated animate__slideInDown overflow-auto color-bg-white" style="width:70%;z-index:100000000;background-color: white; top:40px;height: 100%;overflow:auto;">
+    <br />
+    <div class="row">
+        <div class="col">
+            <form method='POST' class="" action="{%url 'SearchUrl' %}">
+                {%csrf_token%}
+                <input type='search' placeholder='search files and directories' class='form-control' name='searchtext' style='width:80%'>
+            </form>
+        </div>
+    </div>
+    <div class="row my-3">
+        <a class='col sz-18 color-p' href="{%url 'HomeUrl' %} ">
+            Home
+        </a>
+    </div>
+    <div class="row my-3">
+        <a class='col sz-18 color-p' href="{%url 'CreateUrl' %} ">
+            Ask Question
+        </a>
+    </div>
+    {%if request.user.is_authenticated %}
+    <div class="row my-3">
+        <div class="col sz-18">
+            <a class='color-p' href="{{request.user.ProfUser.get_absolute_url}}"> My Profile
+            </a>
+        </div>
+    </div>
+    <div class='row my-3'>
+        <div class='col sz-18'>
+            <a class='color-p' href="{% url 'account_logout'%}">Log Out</a>
+        </div>
+    </div>
+    {%else%}
+    <div class="row my-2">
+        <div class="col">
+            <a class='whie color-p btn color-bg-s color-white' style="" href="{%url 'account_login' %}"> Log in </a>
+        </div>
+    </div>
+    {%endif%}
+
+</div>
+
+        {%block content%}
+    
+        {%endblock%}
+    
+    
+    <script>
+function show() {
+$('#dropdown').toggleClass('hide')
+}
+     </script>
+    
+</body>
+    
+</html>

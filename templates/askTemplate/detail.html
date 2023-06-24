@@ -1,0 +1,91 @@
+{%extends 'base.html'%}
+
+{%block header%}Answer{%endblock%}
+{%block content%}
+{%load static%}
+
+
+<div class='container mt-2'>
+<div class='sz-18 color-p' style='' id='que'>
+{%if question.title%}
+                        {{question.title}}
+                        {%else%}
+                        {{question.body|truncatewords:'10'}}
+                        {%endif%}
+</div>
+
+<div class='sz-16 m1' style='' id='que'>{{question.body}}</div>
+{%if question.image.all%}
+                <div class='row' style='overflw:scroll'>
+                {%for img in question.image.all|slice:'3'%}
+                
+                <div class='col cover p-2'>
+              
+                <a href='{{img.get_absolute_url}}' ><img class='container-fluid rounded p-0' src={{img.image.url}} style='width:100%;height:5cm;'></a>
+                </div>
+                {%endfor%}
+                </div>
+                {%endif%}
+
+<div class='row sz-12 mt-2'>
+                <div class='col-2' style=''>
+                    <span class='color-t'>
+                        {{question.name|title}}
+                    </span>
+                 </div>
+                 <div class='col color-t' style='text-align:right'>
+                        Asked on {{question.date|date:'D j/m/y'}} {{question.date|time}}
+                </div>
+            </div>
+            
+
+
+<div class='row sz-12 color-s border rounded m-auto  py-2 center'>
+{%comment%}
+<div class='col'>
+<b class=''><i class='fas fa-comment'></i> {{answers.count}}</b> Answers</div>
+{%endcomment%}
+<div class='col color-t'>
+ {%include 'askTemplate/like2.html'%} Like
+</div>
+<div class='col color-t '>
+<i class='far fa-eye color-black'></i> {{question.Views}} Views
+</div>
+</div>
+<hr>
+
+{%if answers%}
+<div class='container' stle='border-color:white;'>
+<div class='row'>
+{%include 'askTemplate/answerlist.html' %}
+</div>
+</div>
+
+{%else%}
+
+<p class='center'>No Answer Yet</p>
+
+
+{%endif%}
+
+<div class='fixed-bottom container-fluid color-bg-p color-white sz-20'>
+<div class='row'>
+<div class='col center'>
+<a href="{%url 'AnswerUrl' question.id %}" class='btn bt-block color-bg-p color-white' styl='fnt-size:30px;z-indx:6;botto:10px;padding:7px;color:white;background-color:757575;border-color:white'>
+<i class='fas fa-pen'></i> Drop your Opinion
+</a>
+</div>
+
+{%comment%}
+<div class='col-6 color-bg-p bordr-top'>            
+{% include 'askTemplate/like2.html' %}
+</div>
+{%endcomment%} 
+</div>
+</div>
+
+</p>
+<br />
+</div>
+{%endblock%}
+

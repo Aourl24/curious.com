@@ -1,0 +1,64 @@
+{%load static%}
+<html>
+<head>
+<title>
+        Freezy
+    </title>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+   
+    {% if user.ProfUser.mode == 'Dark' %}
+    <link rel='stylesheet' href='{%static 'css/bootstrap/bootstrap.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/acss/acss.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/dark.css'%}' >
+    
+    {%else%}
+    <link rel='stylesheet' href='{%static 'css/bootstrap/bootstrap.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/acss/acss.css'%}' >
+    
+    {%endif%}   
+    <link rel='stylesheet' href='{%static 'css/fontawesome_5/css/all.min.css'%}' >
+    <link rel='stylesheet' href='{%static 'css/material-dashboard.css'%}'
+    <script src='{%static 'js/htmx.min.js'%}'></script>
+    <script src='{%static 'js/jquery.min.js'%}'></script>
+    <script src='{%static 'js/file.js'%}'>
+    </script>
+    <script src="{% static 'fontawesome_5/js/all.min.js' %}">
+    </script>
+</head>
+<body>
+<div class='container'>
+        <div class='row'>
+            <div class='col-10 bold font-great sz-24'>
+                Freezy
+            </div>
+            <div class='col p-1'>
+                <i class='far fa-user sz-24'></i>
+            </div>
+        </div>
+        
+        <div class='row'>
+            <div class='col'>
+                <input class='form-control'>
+            </div>
+        </div>
+        
+        <div class='row p-1'>
+            <div class='col sz-16'>
+                <i class='fas fa-square'></i>
+                Overview
+            </div>
+            <div class='col sz-16'>
+                <i class='fas fa-square'></i>
+                Configure
+            </div>
+            <div class='col sz-16'>
+                <i class='fas fa-square'></i>
+                Others
+            </div>
+        </div>
+{%block content%}
+
+{%endblock%}
+</div>
+</body>
+</html>

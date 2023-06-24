@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load hitcount_tags%}
+
+{%block header%}
+Home 
+
+{%endblock%}
+
+{%block content%}
+
+    <div class='container' id='box'>
+        <div classs='container sticky-top'>
+                <div class='row sz-14 sticky-top color-bg-white'>
+                    {%for tag in tags%}
+                    <div id='{{tag.id}}' class='col m-1 p-2 border sadow rounded center bod {%if tag.active%}color-bg-p color-white{%endif%}' onclick="addColor({{tag.id}})" hx-target='#target' hx-swap='innerHTML' hx-push-url="{%url 'FilterUrl' tag.title %}" hx-get="{%url 'FilterUrl' tag.title%}">
+                       {{tag.title}}
+                  </div>
+                  {%endfor%}                      
+         </div>
+    
+
+    {%if uquestion%}
+
+        <p>
+            <a class='popovers' href='{%url 'pend'%}'>
+                Pending Questions - {{uquestion.count}}
+            </a>
+        </p>
+        
+    {%endif%}
+    
+   <div id=''>
+      <div class='row' id='target'>
+        {%include 'askTemplate/question.html' %}
+        </div>
+   </div>
+    </div>
+
+<script>
+function addColor(x){
+    $('.bod').removeClass('color-bg-p color-white')
+    $('#'+x).addClass('color-bg-p color-white')
+    
+}
+</script>
+
+{%endblock%}

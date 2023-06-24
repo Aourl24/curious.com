@@ -1,0 +1,79 @@
+{%for question in questions%}
+        
+        <div class='col-12 my-1'>
+            <div class='row'>
+            <div class='col'>
+            <a class='' href='{{question.get_absolute_url}}'>
+
+                
+                    <div class='sz-18 bod color-p' style=''>
+                        {%if question.title%}
+                        {{question.title}}
+                        {%else%}
+                        {{question.body|truncatewords:'10'}}
+                        {%endif%}
+                    </div>
+            </div>
+            </div>
+            <div class='row'>
+                    <div class='col sz-16 color-black my-1' style=''>
+                        {{question.body|truncatewords:'20'}}
+                    </div>
+             </div>
+
+              
+                {%if question.image.all%}
+                <div class='row' style='overflw:scroll'>
+                {%for img in question.image.all|slice:'3'%}
+                
+                <div class='col cover p-2'>
+              
+                <img class='container-fluid rounded p-0' src={{img.image.url}} style='width:100%;height:5cm;'>
+                </div>
+                {%endfor%}
+                </div>
+                {%endif%}
+
+            </a>
+            
+            <div class='row'>
+                <div class='col-2 sz-12' style=''>
+                    <a href="{{question.name.get_absolute_url}}">
+                    <span class='color-t'>
+                        {{question.name|title}}
+                    </span>
+                    </a>
+                 </div>
+                 <div class='col sz-12 color-t' style='text-align:right'>
+                        Asked on {{question.date|date:'D j/m/y'}} {{question.date|time}}
+                </div>
+            </div>
+            
+            
+            <div class='row border rounded colr-bg-t m-1'>
+                <div class='col' style=''>
+                    
+                    <button type='button' class='btn btn-link p-1 sz-12 color-s' stye=''>
+                         <i class='far fa-comments'></i>
+                         {{question.question.count}}
+                     </button>
+                </div>
+                <div class='col sz-12'>
+               
+                                      
+                        {% include 'askTemplate/like2.html' %}
+                </div>       
+                    
+                <div class='col'>
+                     <button type='button' class='btn btn-link p-1 sz-12 color-s' stye=''> 
+                         <i class='far fa-eye'></i>
+                         {{question.Views}}
+                     </button>
+                     
+                </div>
+            </div>  
+           
+            <hr>
+            </div>
+            
+        {%endfor%}

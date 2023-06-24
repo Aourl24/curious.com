@@ -1,0 +1,9 @@
+{%extends 'freezyTemplate/base.html'%}
+
+{%block content%}
+{{item}}
+
+{%for field in fields%}
+<p>{{field.name}}:{{field.value}}</p>
+{%endfor%}
+{%endblock%}

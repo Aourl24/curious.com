@@ -1,0 +1,31 @@
+{%if user.is_authenticated%}
+<form style='padding:0;margin:0;display:inline-block' hx-post='{%url 'like' question.id%}' hx-swap='outerHTML'>
+{%csrf_token%}
+<button
+ class='no-border btn-link' style='padding:0;margin:0'
+ id='getid'
+ value ={{question.id}}  
+ >
+{%else%}
+<form style='margin:0;display:inline-block;padding:0'>
+<button onclick="$('#loginpop').toggleClass('hide')" type='button'
+ class='no-border btn-link ' 
+ id='getid' style='padding:0;margin:0'
+ value ={{question.id}}  
+ >
+ {%endif%}
+ 
+ <input type='hidden' name='questionId' value='{{question.id}}' >
+ {% if currentUser in question.Support.all %} 
+ <span class='color' style='color: magenta' ><i class='fas fa-heart'></i>
+    
+</span> 
+  {{question.Support.count}}                    
+ {%else%}
+ <span style='' class='color-t'>                 
+ <i class='far fa-heart' style=''></i>
+  {{question.Support.count}}
+ <span>
+ {%endif%}
+</button>
+</form>

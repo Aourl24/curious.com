@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div id='' class='container my-2' style=''>
+<div class='row my-2'>
+<div class='col'>
+{{question.body}}
+</div>
+</div>
+{%if answer%}
+<div class='row my-2'>
+<div class='col'>
+<i class='color-s'>Replying to</i> {{answer.body}}
+</div>
+</div>
+{%endif%}
+<p><form method='POST'>
+{%csrf_token%}
+{{form.as_p}}
+
+<button type='submit' class='btn btn-block btn-success'>Submit</button>
+
+</form>
+</p>
+
+</div>
+{%endblock%}

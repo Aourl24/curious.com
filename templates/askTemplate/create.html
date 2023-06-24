@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+
+{%block header%}Ask{%endblock%}
+{%block content%}
+<div class='container'>
+
+<form method='post' class='my-3' enctype='multipart/form-data'>
+{%csrf_token%}
+{%for field in form%}
+<p>{{field.label}}</p>
+<p>{{field.as_widget}}</p>
+{%endfor%}
+<h6>Add Image </h6>
+<p>
+<input name='images' type='file' multiple=True class='form-control' placeholder='upload images' />
+</p>
+<p><button class='btn btn-block color-white color-bg-p' onclick="alert('Successful')" type='submit'>Submit</button>
+</form>
+
+{%comment%}
+<p>
+<b>Note</b>
+</p>
+<p class='desize'>
+Questions Ask will be approved by an Admin before been Posted</p>
+
+<p class='desize'>Ask Questions that follows the Guidelines of the Community</p>
+</div>
+{%endcomment%}
+{%endblock%}

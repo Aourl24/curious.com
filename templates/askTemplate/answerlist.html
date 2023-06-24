@@ -1,0 +1,56 @@
+{%for answer in answers%}
+
+<div class='col-12 shaow rounded my-2' style='border-left:1px solid silver;boder-bottom:1px solid silver'>
+<div class='row my-2'>
+<div class='sz-12 col'> {{answer.user|title}}</div>
+<div class='col color-t sz-12'>
+{{answer.date|timesince}} ago</div>
+</div>
+
+
+<p class='sz-14' style=''>
+{{answer.body|title}}</p>
+
+<input type='hidden' name='sender' value='{{answer.user}}'>
+<input type='hidden' name='lieb' value='{{answer.id}}' >
+
+<div class='row'>
+<div class='col'>
+{%include 'askTemplate/like.html'%}
+</div>
+<div class='col'>
+
+<a href="{%url 'AnswerReplyUrl' answer.question.id answer.id %}" style='' type='button' class='color-black btn btn-link p-0 sz-12'>
+  <i class='far fa-comments color-s'></i> {{answer.replys.count}}</p></a>
+</div> 
+</div> 
+
+{%if answer.replys.all%}
+<div class='container'>
+
+<div class='row' style='tex-align:right' id='reply'>
+{%include 'askTemplate/answerlist.html' with answers=answer.replys.all|slice:'1'%}
+
+</div>
+
+{%if answer.replys.count > 1%}
+<div class='sz-12' hx-get="{{answer.get_absolute_url}}" hx-swap='innerHTML' hx-target='#reply'> view more replies </div>
+{%endif%}
+</div>
+{%endif%}
+
+<div id='{{answer.id}}' class='form hide'>
+
+<p><form method='POST' class='fom'>
+ {%csrf_token%}
+<input type='hidden' name='answer_id' value='{{answer.id}}'>
+
+<input name='reply' type='text' class='form-control'>
+ 
+ </form>
+ </p>
+
+ 
+</div>
+</div>
+{%endfor%}

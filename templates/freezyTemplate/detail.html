@@ -1,0 +1,6 @@
+{%extends 'freezyTemplate/base.html'%}
+
+{%block content%}
+<h4>{{subject|title}}</h4>
+{%include 'freezyTemplate/listitem.html' with items=subject_items %}
+{%endblock%}

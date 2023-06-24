@@ -1,0 +1,25 @@
+
+{%if user.is_authenticated%}
+<button 
+hx-get='{%url 'lyk' answer.id%}'
+hx-include="input[name='sender'], input[name='lieb']"
+hx-swap='outerHTML'
+name='likeb' 
+id='lik' 
+class='btn btn-link p-0 sz-12 color-black'
+>
+{%else%}
+<button class='btn btn-link p-0 sz-12 color-black'>
+
+{%endif%}
+{{error}}
+{% if currentUser in answer.like.all %}
+<i class='fas fa-heart' style='color:magenta'></i>
+{%else%}
+<i class='far fa-heart color-t' style=''></i> 
+{%endif%}
+<span id='count'>{{answer.like.count}}</span>
+{%comment%}
+<span class='htmx-indicator' style=''><i class='fas fa-heart sz-14'></i></span>
+{%endcomment%}
+</button>

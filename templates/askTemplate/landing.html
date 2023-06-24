@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block content%}
+<div class='bo' style='text-align:center'>
+<br>
+<br>
+
+<marquee behavior='slide'><img src='{%static 'images/fatwa.png'%}' width=180cm, height=auto ></marquee>
+    
+
+<br>
+
+<form method='get' action='{%url 'SearchUrl'%}'>
+{%csrf_token%}
+<input class='submit-long-curve' name='searchtext' type='search' placeholder='Search Questions'>
+</form>
+
+<br>
+<br>
+<br>
+<div class='flex-wrp' style='text-align:center'>
+<div class='header' style='font-size:25px;color:347C17'>
+Learning more 
+<br>about Islam
+</div>
+<br>
+<br>
+Abu Huraira reported: The Messenger of Allah, peace and blessings be upon him, said, “Whoever is given an opinion not based on knowledge, his sin falls upon the one who gave him the opinion. Whoever directs his brother to a matter of which he knows good lies elsewhere, he has betrayed him.”
+
+Source: Sunan Abī Dāwūd 3657
+
+Grade: Hasan (fair) according to Al-Arna’ut
+
+عَنْ أَبِي هُرَيْرَةَ قَالَ قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ مَنْ أُفْتِيَ بِغَيْرِ عِلْمٍ كَانَ إِثْمُهُ عَلَى مَنْ أَفْتَاهُ وَمَنْ أَشَارَ عَلَى أَخِيهِ بِأَمْرٍ يَعْلَمُ أَنَّ الرُّشْدَ فِي غَيْرِهِ فَقَدْ خَانَهُ
+
+3657 سنن أبي داود كتاب العلم باب التوقي في الفتيا
+
+3657 المحدث شعيب الأرناؤوط خلاصة حكم المحدث حسن في تخريج سنن أبي داود
+
+<br>
+<br>
+<div class='box-border' styl='text-align:center'>
+
+
+
+<img src='{%static 'images/Picture.jpg'%}' width=100%, height=auto>
+
+</div>
+
+<br>
+<br>
+<div class='box-border' style='text-align:center'>
+
+
+
+<img src='{%static 'images/QandA.jpg'%}' width=100%, height=auto>
+
+</div>
+
+<p><a href='{%url 'HomeUrl'%}' class='menu'>Home</a></p>
+
+<br>
+<br>
+<div class='box-border' stye='text-align:center'>
+
+
+
+<img src='{%static 'images/Ask.jpg'%}' width=100%, height=auto>
+
+</div>
+
+<p><a href='{%url 'CreateUrl' %}' class='menu'>Ask a Question</a></p>
+</li>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<p>
+Fatwa is a Platform for all Muslim in the World to Learn the Word of Allah and the teachings of Prophet Muhammed(S.A.S)</p>
+
+@Fatwa2022
+</div>
+</div>
+{%endblock%}

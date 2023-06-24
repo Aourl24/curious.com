@@ -1,0 +1,68 @@
+{%extends 'freezyTemplate/base.html'%}
+
+{%block content%}
+
+        <div class='container'>
+        <div class='row my-2'>
+            <div class='col sz-18 bold'>
+                
+            </div>
+        </div>
+            <div class='row '>
+            {%for model in models%}
+                <div class='col-12 my-3 py-2 border roded'>
+                    <div class='row color-bg-p mb-2 p-1 color-white' style='margin-top:-18px '>
+                        <div class='col-7 sz-16' style=''>
+                            <a class='color-white bold' href="{%url 'ModelDetail' model.label model.name %}"> {{model.name|title}}</a>
+                        </div>
+                    </div>
+                    
+                    <div class='row sz-14'>
+                        <div class='col-12'>
+                            <span class='color-p'>Label</span> :  {{model.label}}
+                        </div>
+                        <div class='col-12'>
+                            <span class='color-p'>Total</span>  : {{model.objects.count}}
+                        </div>
+                    </div>
+                    
+                    <div class='row'>
+                        <div class='col sz-14 pb-2 color-p'>
+                            Last added
+                        </div>
+                    </div>
+                    <div class='row'>
+                       {%for obj in model.objects|slice:':3'%}
+                            <div class='col-2 sz-15'>
+                                {{forloop.counter}} 
+                                
+                            </div>
+                            <div class='col-10'>
+                                {{obj|title}}
+                            </div>
+                            <hr> 
+                        {%endfor%}
+                    </div>
+                    
+                    <div class='row center my-2'>
+                        <div class='col sz-14'>
+                            <a href="{%url 'ModelDetail' model.label model.name %}" class='btn border'>Show Details</a>
+                        </div>
+                        <div class='col sz-14'>
+                            <a href='' class='btn border'>Add New</a>
+                        </div>
+                    </div>
+                 </div>
+            {%endfor%}
+            </div>
+        </div>
+         
+        <br/>
+        <div class='row'>
+            <div class='col'>
+                <button class='btn btn-block'> Add a new section</button>
+            </div>
+        </div>
+        </div>
+        
+{%endblock%}
